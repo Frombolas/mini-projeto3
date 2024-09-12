@@ -11,20 +11,13 @@ let totalItens = 0;
 let buscaAtual = '';
 let buscando = false; // Flag para verificar se a busca foi acionada
 
-// Event Listeners
-botaoBusca.addEventListener('click', () => {
-    buscaAtual = campoBusca.value.trim();
-    paginaAtual = 1;
-    buscando = true; // A busca foi acionada
-    buscarSeries();
-});
-
 // Função para buscar séries
 async function buscarSeries() {
     let url = `${apiBaseURL}?pagina=${paginaAtual}&limite=${itensPorPagina}`;
     
+    // Adiciona o parâmetro de busca apenas se o usuário digitou algo
     if (buscaAtual !== '') {
-        url = `${apiBaseURL}?titulo=${encodeURIComponent(buscaAtual)}&pagina=${paginaAtual}&limite=${itensPorPagina}`;
+        url += `&titulo=${encodeURIComponent(buscaAtual)}`;
     }
 
     try {
@@ -33,14 +26,31 @@ async function buscarSeries() {
             throw new Error('Erro na requisição');
         }
         let dados = await resposta.json();
-        totalItens = dados.total; // Supondo que a API retorna um campo 'total'
-        exibirSeries(dados.series); // Supondo que a API retorna as séries no campo 'series'
-        configurarPaginacao();
+
+        // Exibe a estrutura dos dados no console para depuração
+        console.log(dados);
+
+        // Verifica se o campo 'series' existe e contém dados
+        if (dados.series && dados.series.length > 0) {
+            totalItens = dados.total || 0;  // Supondo que a API retorna o total de itens
+            exibirSeries(dados.series);
+            configurarPaginacao();
+        } else {
+            containerSeries.innerHTML = '<p>Nenhuma série encontrada.</p>';
+        }
     } catch (erro) {
         console.error(erro);
         containerSeries.innerHTML = '<p>Ocorreu um erro ao buscar as séries.</p>';
     }
 }
+
+// Event Listeners
+botaoBusca.addEventListener('click', () => {
+    buscaAtual = campoBusca.value.trim();
+    paginaAtual = 1;
+    buscando = true; // A busca foi acionada
+    buscarSeries(); // Chama a função de busca ao clicar no botão
+});
 
 // Função para exibir as séries
 function exibirSeries(series) {
@@ -51,26 +61,26 @@ function exibirSeries(series) {
     } else {
         if (series && series.length > 0) {
             series.forEach(serie => {
+                // Cria um div para o card da série
                 let card = document.createElement('div');
-                card.classList.add('cartao-serie');
+                card.classList.add('cartao-serie'); 
 
                 let img = document.createElement('img');
-                img.src = serie.poster || 'placeholder.jpg'; // Substitua 'poster' pelo campo correto da API
-                img.alt = serie.titulo;
+                img.src = serie.poster || 'placeholder.jpg'; 
+                img.alt = serie.titulo || 'Imagem da série'; 
 
                 let info = document.createElement('div');
-                info.classList.add('info-serie');
+                info.classList.add('info-serie'); 
 
                 let titulo = document.createElement('h3');
-                titulo.textContent = serie.titulo;
+                titulo.textContent = serie.titulo || 'Título não disponível';
 
                 let descricao = document.createElement('p');
-                descricao.textContent = serie.descricao || 'Sem descrição disponível.'; // Substitua 'descricao' pelo campo correto
+                descricao.textContent = serie.descricao || 'Sem descrição disponível'; 
 
                 info.appendChild(titulo);
                 info.appendChild(descricao);
 
-                card.appendChild(img);
                 card.appendChild(info);
 
                 containerSeries.appendChild(card);
@@ -125,5 +135,7 @@ function configurarPaginacao() {
     controlesPagina.appendChild(botaoProximo);
 }
 
-// Inicializar a aplicação
-buscarSeries();
+// Inicializar a aplicação chamando buscarSeries
+document.addEventListener('DOMContentLoaded', () => {
+    buscarSeries();
+});
