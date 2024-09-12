@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.cabecalho {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+#campoBusca {
+    padding: 10px;
+    width: calc(100% - 120px); /* Ajusta a largura para se adaptar a dispositivos móveis */
+    margin-right: 10px;
+    font-size: 18px; /* Aumenta o tamanho da fonte do campo de busca */
+}
+
+#botaoBusca {
+    padding: 10px;
+    background-color: #555;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px; /* Aumenta o tamanho da fonte do botão */
+}
+
+.conteudo {
+    padding: 20px;
+}
+
+#listaSeries {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.serie {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.serie img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.serie h3 {
+    margin: 10px 0;
+}
+
+.paginacao {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#paginaAnterior,
+#proximaPagina {
+    padding: 10px;
+    background-color: #555;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px; /* Aumenta o tamanho da fonte dos botões de paginação */
+}
+
+#paginaAtual {
+    margin: 0 15px;
+    font-size: 18px;
+}
+
+/* Adaptação para dispositivos móveis */
+@media (max-width: 768px) {
+    #campoBusca {
+        width: calc(100% - 20px); /* Ajusta a largura do campo de busca para dispositivos móveis */
+        margin-right: 0;
+    }
+
+    #botaoBusca {
+        width: 100%;
+        margin-top: 10px; /* Adiciona margem superior ao botão de busca em dispositivos móveis */
+    }
+}
