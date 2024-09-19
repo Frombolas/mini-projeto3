@@ -1,28 +1,31 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explorador de Séries</title>
     <link rel="stylesheet" href="style.css">
+    <title>Projeto 3</title>
 </head>
 <body>
-    <div class="cabecalho">
-        <h1 id="titulo">Explorador de Séries</h1>
-        <input type="text" id="campo-busca" placeholder="Buscar uma série...">
-        <button id="botao-busca">Buscar</button>
-    </div>
-
-    <div class="conteudo">
-        <div id="container-series">
-            <!-- Séries serão exibidas aqui -->
+    <div class="container">
+        <h1>Explorador de Séries</h1>
+        <input type="text" id="search" placeholder="Buscar por título" />
+        <button onclick="buscar()">Buscar</button>
+        
+        <div id="divSeries" class="series-list"></div>
+        
+        <div class="pagination">
+          <button id="left" style="display:none;">Página Anterior</button>
+          <span id="current-page">1</span>
+          <button id="right">Próxima Página</button>
         </div>
-        <div class="paginacao" id="controles-pagina">
-            <!-- Controles de paginação -->
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+    
+        <div id="message" class="message"></div>
+      </div>
+    <footer>
+        <p>Dev by Gustavo, Ana Beatriz, Darkiane e Raquel</p>
+    </footer>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
-

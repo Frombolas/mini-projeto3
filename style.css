@@ -1,89 +1,105 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
 }
 
-.cabecalho {
-    background-color: #333;
-    color: white;
+.container {
+    width: 80%;
+    margin: 0 auto;
     padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
     text-align: center;
 }
 
-#campoBusca {
+input[type="text"] {
+    width: 80%;
     padding: 10px;
-    width: calc(100% - 120px); /* Ajusta a largura para se adaptar a dispositivos móveis */
-    margin-right: 10px;
-    font-size: 18px; /* Aumenta o tamanho da fonte do campo de busca */
-}
-
-#botaoBusca {
-    padding: 10px;
-    background-color: #555;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 18px; /* Aumenta o tamanho da fonte do botão */
-}
-
-.conteudo {
-    padding: 20px;
-}
-
-#listaSeries {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-}
-
-.serie {
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.serie img {
-    max-width: 100%;
-    border-radius: 5px;
-}
-
-.serie h3 {
     margin: 10px 0;
+    font-size: 16px;
 }
 
-.paginacao {
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.series-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.series-item {
+    width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.series-item:hover {
+    transform: scale(1.05);
+}
+
+.series-item img {
+    max-width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.pagination {
     text-align: center;
     margin-top: 20px;
 }
 
-#paginaAnterior,
-#proximaPagina {
+.pagination button {
     padding: 10px;
-    background-color: #555;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 18px; /* Aumenta o tamanho da fonte dos botões de paginação */
+    margin: 0 5px;
 }
 
-#paginaAtual {
-    margin: 0 15px;
+.pagination select {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.destaque {
+    background-color: yellow;
+}
+
+.message {
+    text-align: center;
+    margin-top: 20px;
     font-size: 18px;
+    color: red;
 }
 
-/* Adaptação para dispositivos móveis */
-@media (max-width: 768px) {
-    #campoBusca {
-        width: calc(100% - 20px); /* Ajusta a largura do campo de busca para dispositivos móveis */
-        margin-right: 0;
-    }
+footer {
+    padding: 0.2%;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #ccc;
+    text-align: center;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    display: none;
+    z-index: 1; /* Coloca o rodapé atrás de outros elementos com z-index maior */
+}
+body {
+    padding-bottom: 60px; 
+}
 
-    #botaoBusca {
-        width: 100%;
-        margin-top: 10px; /* Adiciona margem superior ao botão de busca em dispositivos móveis */
-    }
+.pagination {
+    position: relative;
+    z-index: 2; 
 }
